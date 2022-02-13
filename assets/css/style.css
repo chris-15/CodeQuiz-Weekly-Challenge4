@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 5px 0px 5px;    
+}
+
+/* .page-content {
+    text-align: center;
+    margin: auto;
+    width: 50%;
+}
+ */
