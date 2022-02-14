@@ -1,6 +1,30 @@
 var pageContentEl = document.querySelector("#page-content");
+pageContentEl.setAttribute("style", "margin:auto; width:50%; text-align:center;");
 
-pageContentEl.setAttribute("style", "margin:auto; width:50%; text-align:center;")
+var timerEl = document.querySelector("#timer");
+
+var timeLeft = 75;
+
+var countdown = function() {
+    var timeCountdown = setInterval(function(){
+        if (timeLeft > 0){
+            timerEl.textContent= timeLeft;
+            timeLeft--;
+        } else {
+            timerEl.textContent = '';
+            clearInterval(timeCountdown);
+            //alert("you ran out of time")
+            //put finalscore function screen
+        }
+    }, 1000)
+    
+};
+
+
+
+
+
+
 
 //create div container to hold instructions start
 var quizInstructionsEl = document.createElement("div");
@@ -82,6 +106,7 @@ var quizOne = function() {
             console.log("wrong answer!");
             quizContainerEl.remove();
             alert("Wrong Answer!");
+            timeLeft= timeLeft-10;
             quizTwo();
     }
     });
@@ -141,6 +166,7 @@ var quizTwo = function() {
             console.log("wrong answer!");
             quizContainerEl.remove();
             alert("Wrong Answer!");
+            timeLeft= timeLeft-10;
             quizThree();
     }
     });
@@ -200,6 +226,7 @@ var quizThree = function() {
             console.log("wrong answer!");
             quizContainerEl.remove();
             alert("Wrong Answer!");
+            timeLeft= timeLeft-10;
             quizFour();
     }
     });
@@ -259,6 +286,7 @@ var quizFour = function() {
             console.log("wrong answer!");
             quizContainerEl.remove();
             alert("Wrong Answer!");
+            timeLeft= timeLeft-10;
             quizFive();
     }
     });
@@ -312,12 +340,19 @@ var quizFive = function() {
         if (targetEl.matches(".correct-btn")) {
             console.log("correct answer!");
             quizContainerEl.remove();
-            alert("Correct Answer!")
+            finalScore=timeLeft;
+            console.log(finalScore)
+            alert("Correct Answer!");
+            
             // CALL FUNCTION HERE TO DISPLAY FINAL SCORE
         } else if (targetEl.matches(".wrong-btn")) {
             console.log("wrong answer!");
             quizContainerEl.remove();
-            alert("Wrong Answer!")
+            timeLeft= timeLeft-10;
+            finalScore= timeLeft;
+            console.log(finalScore);
+            alert("Wrong Answer!");
+            
             //CALL FUNCTION HERE TO DISPLAY FINAL SCORE
     }
     });
@@ -348,8 +383,10 @@ var quizFive = function() {
 
 // function that removes starting instructions and starts quiz 
 var startQuizButton = function() {
+    countdown();
     quizInstructionsEl.remove();
     quizOne();
+    
     
     
 }
