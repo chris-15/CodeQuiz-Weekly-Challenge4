@@ -5,9 +5,6 @@ var timerEl = document.querySelector("#timer");
 
 var timeLeft = 75;
 
-var isQuizDone = false;
-console.log(!isQuizDone);
-
 
 var countdown = function() {
     var timeCountdown = setInterval(function() {
@@ -367,7 +364,7 @@ var quizFive = function() {
             alert("Wrong Answer!");
             quizDone();
             
-            //CALL FUNCTION HERE TO DISPLAY FINAL SCORE
+            
     }
     });
 }
@@ -376,7 +373,7 @@ var quizFive = function() {
 var quizDone = function() {
     /* timerEl.remove(); */
     finalScore= timeLeft;
-    
+    clearInterval(countdown);
 
     //creat div container to hold score and form
     var quizDoneEl = document.createElement("div");
@@ -392,7 +389,7 @@ var quizDone = function() {
     //final score display
     var scoreEl = document.createElement("p");
     scoreEl.setAttribute("id", "score");
-    scoreEl.innerHTML = "Your final score is " +final + ".";
+    scoreEl.innerHTML = "Your final score is " +finalScore + ".";
     quizDoneEl.appendChild(scoreEl);
 
     //div for form
@@ -426,6 +423,7 @@ var quizDone = function() {
     formButton.addEventListener("click", function(){
         localStorage.setItem("initials", initials.value);
         localStorage.setItem("score", finalScore);
+        quizDoneEl.remove();
         //ADD FUNCTION HERE TO TAKE YOU TO HIGHSCORE PAGE FUNCTION
     })
 
