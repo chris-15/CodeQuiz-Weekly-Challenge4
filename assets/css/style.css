@@ -8,6 +8,12 @@ header {
     margin: 0px 5px 0px 5px;    
 }
 
+#container-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
 /* .page-content {
     text-align: center;
     margin: auto;

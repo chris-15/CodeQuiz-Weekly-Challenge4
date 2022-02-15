@@ -5,51 +5,60 @@ var timerEl = document.querySelector("#timer");
 
 var timeLeft = 75;
 
+var isQuizDone = false;
+console.log(!isQuizDone);
+
+
 var countdown = function() {
-    var timeCountdown = setInterval(function(){
-        if (timeLeft > 0){
+    var timeCountdown = setInterval(function() {
+        if (timeLeft > 0) {
             timerEl.textContent= timeLeft;
             timeLeft--;
-        } else {
-            timerEl.textContent = '';
+           
+        }else {
             clearInterval(timeCountdown);
-            //alert("you ran out of time")
-            //put finalscore function screen
+            alert("You did not finish the quiz in time, your score is 0! Please try agian!")
+            location.reload();
+                      
         }
     }, 1000)
-    
 };
 
 
 
+//function to start page
+var startingPage = function() {
+    //create div container to hold instructions start
+    var quizInstructionsEl = document.createElement("div");
+    quizInstructionsEl.setAttribute("id", "instructions");
+    pageContentEl.appendChild(quizInstructionsEl);
+    // create title for insturctions
+    var titleEl = document.createElement("h1");
+    titleEl.setAttribute("id", "title");
+    titleEl.textContent = ("Coding Quiz Challenge");
+    quizInstructionsEl.appendChild(titleEl);
+    // create instruction description
+    var quizDescriptionEl = document.createElement("p");quizDescriptionEl.setAttribute("id", "quiz-description");
+    quizDescriptionEl.textContent= ("Try to answer the following code related question within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!");
+    quizInstructionsEl.appendChild(quizDescriptionEl);
+    
+    //create button to start quiz
+    var buttonStartEl = document.createElement("button");
+    buttonStartEl.setAttribute("id", "btn-start");
+    buttonStartEl.className = ("btn btn-start");
+    buttonStartEl.textContent= "Start Quiz";
+    quizInstructionsEl.appendChild(buttonStartEl);
 
-
-
-
-//create div container to hold instructions start
-var quizInstructionsEl = document.createElement("div");
-quizInstructionsEl.setAttribute("id", "instructions");
-pageContentEl.appendChild(quizInstructionsEl);
-
-// create title for insturctions
-var titleEl = document.createElement("h1");
-titleEl.setAttribute("id", "title");
-titleEl.textContent = ("Coding Quiz Challenge");
-quizInstructionsEl.appendChild(titleEl);
-
-// create instruction description
-var quizDescriptionEl = document.createElement("p");
-quizDescriptionEl.setAttribute("id", "quiz-description");
-quizDescriptionEl.textContent= ("Try to answer the following code related question within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!");
-quizInstructionsEl.appendChild(quizDescriptionEl);
-
-//create button to start quiz
-var buttonStartEl = document.createElement("button");
-buttonStartEl.setAttribute("id", "btn-start");
-buttonStartEl.className = ("btn btn-start");
-buttonStartEl.textContent= "Start Quiz";
-quizInstructionsEl.appendChild(buttonStartEl);
-
+    // function that removes starting instructions and starts quiz 
+    var startQuizButton = function() {
+        countdown();
+        quizInstructionsEl.remove();
+        quizOne();
+    }
+    
+    //event listener for when button is clicked to start quiz
+    buttonStartEl.addEventListener("click", startQuizButton);
+}
 
 
 //function for first question
@@ -94,6 +103,8 @@ var quizOne = function() {
     optionFourEl.className = ("wrong-btn");
     optionFourEl.textContent = ("4. numbers");
     optionContainerEl.appendChild(optionFourEl);
+
+   
 
     optionContainerEl.addEventListener("click", function(event) {
         var targetEl = event.target;
@@ -239,7 +250,7 @@ var quizFour = function() {
     quizContainerEl.setAttribute("id", "questions");
     pageContentEl.appendChild(quizContainerEl);
 
-    //question three
+    //question four
     var questionFourEl = document.createElement("h1");
     questionFourEl.setAttribute("id", "question-four");
     questionFourEl.textContent = ("String values must be enclosed within __________ when being assigned to variables.");
@@ -299,7 +310,7 @@ var quizFive = function() {
     quizContainerEl.setAttribute("id", "questions");
     pageContentEl.appendChild(quizContainerEl);
 
-    //question three
+    //question five
     var questionFiveEl = document.createElement("h1");
     questionFiveEl.setAttribute("id", "question-five");
     questionFiveEl.textContent = ("A very useful tool used during development and debugging for printing content to the debugger is:");
@@ -343,6 +354,8 @@ var quizFive = function() {
             finalScore=timeLeft;
             console.log(finalScore)
             alert("Correct Answer!");
+            quizDone();
+            
             
             // CALL FUNCTION HERE TO DISPLAY FINAL SCORE
         } else if (targetEl.matches(".wrong-btn")) {
@@ -352,44 +365,91 @@ var quizFive = function() {
             finalScore= timeLeft;
             console.log(finalScore);
             alert("Wrong Answer!");
+            quizDone();
             
             //CALL FUNCTION HERE TO DISPLAY FINAL SCORE
     }
     });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function that removes starting instructions and starts quiz 
-var startQuizButton = function() {
-    countdown();
-    quizInstructionsEl.remove();
-    quizOne();
+//function for final score page
+var quizDone = function() {
+    /* timerEl.remove(); */
+    finalScore= timeLeft;
     
+
+    //creat div container to hold score and form
+    var quizDoneEl = document.createElement("div");
+    quizDoneEl.setAttribute("id", "score-form");
+    pageContentEl.appendChild(quizDoneEl);
+
+    //all done message 
+    var allDoneEl = document.createElement("h1");
+    allDoneEl.setAttribute("id", "all-done");
+    allDoneEl.textContent = ("All done!");
+    quizDoneEl.appendChild(allDoneEl);
+
+    //final score display
+    var scoreEl = document.createElement("p");
+    scoreEl.setAttribute("id", "score");
+    scoreEl.innerHTML = "Your final score is " +final + ".";
+    quizDoneEl.appendChild(scoreEl);
+
+    //div for form
+
+    var formContainer = document.createElement("div");
+    formContainer.setAttribute("id", "container-form");
+    quizDoneEl.appendChild(formContainer);
     
+    //label
+    var formLabel = document.createElement("label");
+    formLabel.setAttribute("for", "final-score");
+    formLabel.textContent= "Enter your initials:";
+    formContainer.appendChild(formLabel);
+  
+    //form input
+    var formInput = document.createElement("input");
+    formInput.setAttribute("type", "text");
+    formInput.setAttribute("id", "initials")
+    formInput.setAttribute("name", "initials");
+    formContainer.appendChild(formInput);
+
+    //button 
+    var formButton = document.createElement("button");
+    formButton.setAttribute("type", "submit");
+    formButton.className=("btn form-button");
+    formButton.textContent = ("Sumbit");
+    formContainer.appendChild(formButton);
     
+    var initials = document.querySelector("#initials");
+
+    formButton.addEventListener("click", function(){
+        localStorage.setItem("initials", initials.value);
+        localStorage.setItem("score", finalScore);
+        //ADD FUNCTION HERE TO TAKE YOU TO HIGHSCORE PAGE FUNCTION
+    })
+
 }
 
-//event listener for when button is clicked to start quiz
-buttonStartEl.addEventListener("click", startQuizButton);
+
+startingPage();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
