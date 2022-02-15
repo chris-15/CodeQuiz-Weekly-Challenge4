@@ -5,18 +5,20 @@ var timerEl = document.querySelector("#timer");
 
 var timeLeft = 75;
 
+var timeCountdown;
+
 
 var countdown = function() {
-    var timeCountdown = setInterval(function() {
+    timeCountdown = setInterval(function() {
         if (timeLeft > 0) {
-            timerEl.textContent= timeLeft;
             timeLeft--;
+            timerEl.textContent= timeLeft;
+            
            
         }else {
             clearInterval(timeCountdown);
             alert("You did not finish the quiz in time, your score is 0! Please try agian!")
-            location.reload();
-                      
+            location.reload();          
         }
     }, 1000)
 };
@@ -373,7 +375,7 @@ var quizFive = function() {
 var quizDone = function() {
     /* timerEl.remove(); */
     finalScore= timeLeft;
-    clearInterval(countdown);
+    clearInterval(timeCountdown);
 
     //creat div container to hold score and form
     var quizDoneEl = document.createElement("div");
