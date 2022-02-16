@@ -3,6 +3,7 @@ pageContentEl.setAttribute("style", "margin:auto; width:50%; text-align:center;"
 
 var headerEl=document.querySelector("#header");
 var timerEl = document.querySelector("#timer");
+var headerHighScoreBtn = document.querySelector("#main-highscore-btn");
 
 var timeLeft = 75;
 
@@ -61,6 +62,11 @@ var startingPage = function() {
     
     //event listener for when button is clicked to start quiz
     buttonStartEl.addEventListener("click", startQuizButton);
+
+    headerHighScoreBtn.addEventListener("click",function(){
+        quizInstructionsEl.remove();
+        highScore();
+    });
 }
 
 
@@ -85,25 +91,25 @@ var quizOne = function() {
     //options buttons
     var optionOneEl= document.createElement("button");
     optionOneEl.setAttribute("id", "btn-option1")
-    optionOneEl.className = ("correct-btn");
+    optionOneEl.className = ("btn correct-btn");
     optionOneEl.textContent = ("1. alerts");
     optionContainerEl.appendChild(optionOneEl);
 
     var optionTwoEl= document.createElement("button");
     optionTwoEl.setAttribute("id", "btn-option2")
-    optionTwoEl.className = ("wrong-btn");
+    optionTwoEl.className = ("btn wrong-btn");
     optionTwoEl.textContent = ("2. strings");
     optionContainerEl.appendChild(optionTwoEl);
 
     var optionThreeEl= document.createElement("button");
     optionThreeEl.setAttribute("id", "btn-option3")
-    optionThreeEl.className = ("wrong-btn");
+    optionThreeEl.className = ("btn wrong-btn");
     optionThreeEl.textContent = ("3. booleans");
     optionContainerEl.appendChild(optionThreeEl);
 
     var optionFourEl= document.createElement("button");
     optionFourEl.setAttribute("id", "btn-option4")
-    optionFourEl.className = ("wrong-btn");
+    optionFourEl.className = ("btn wrong-btn");
     optionFourEl.textContent = ("4. numbers");
     optionContainerEl.appendChild(optionFourEl);
 
@@ -147,25 +153,25 @@ var quizTwo = function() {
     //options buttons
     var optionOneEl= document.createElement("button");
     optionOneEl.setAttribute("id", "btn-option1")
-    optionOneEl.className = ("wrong-btn");
+    optionOneEl.className = ("btn wrong-btn");
     optionOneEl.textContent = ("1. quotes");
     optionContainerEl.appendChild(optionOneEl);
 
     var optionTwoEl= document.createElement("button");
     optionTwoEl.setAttribute("id", "btn-option2")
-    optionTwoEl.className = ("wrong-btn");
+    optionTwoEl.className = ("btn wrong-btn");
     optionTwoEl.textContent = ("2. curly brackets");
     optionContainerEl.appendChild(optionTwoEl);
 
     var optionThreeEl= document.createElement("button");
     optionThreeEl.setAttribute("id", "btn-option3")
-    optionThreeEl.className = ("wrong-btn");
+    optionThreeEl.className = ("btn wrong-btn");
     optionThreeEl.textContent = ("3. square brackets");
     optionContainerEl.appendChild(optionThreeEl);
 
     var optionFourEl= document.createElement("button");
     optionFourEl.setAttribute("id", "btn-option4")
-    optionFourEl.className = ("correct-btn");
+    optionFourEl.className = ("btn correct-btn");
     optionFourEl.textContent = ("4. parantheses");
     optionContainerEl.appendChild(optionFourEl);
 
@@ -207,25 +213,25 @@ var quizThree = function() {
     //options buttons
     var optionOneEl= document.createElement("button");
     optionOneEl.setAttribute("id", "btn-option1")
-    optionOneEl.className = ("wrong-btn");
+    optionOneEl.className = ("btn wrong-btn");
     optionOneEl.textContent = ("1. numbers and strings");
     optionContainerEl.appendChild(optionOneEl);
 
     var optionTwoEl= document.createElement("button");
     optionTwoEl.setAttribute("id", "btn-option2")
-    optionTwoEl.className = ("wrong-btn");
+    optionTwoEl.className = ("btn wrong-btn");
     optionTwoEl.textContent = ("2. other arrays");
     optionContainerEl.appendChild(optionTwoEl);
 
     var optionThreeEl= document.createElement("button");
     optionThreeEl.setAttribute("id", "btn-option3")
-    optionThreeEl.className = ("wrong-btn");
+    optionThreeEl.className = ("btn wrong-btn");
     optionThreeEl.textContent = ("3. booleans");
     optionContainerEl.appendChild(optionThreeEl);
 
     var optionFourEl= document.createElement("button");
     optionFourEl.setAttribute("id", "btn-option4")
-    optionFourEl.className = ("correct-btn");
+    optionFourEl.className = ("btn correct-btn");
     optionFourEl.textContent = ("4. all of the above");
     optionContainerEl.appendChild(optionFourEl);
 
@@ -267,25 +273,25 @@ var quizFour = function() {
     //options buttons
     var optionOneEl= document.createElement("button");
     optionOneEl.setAttribute("id", "btn-option1")
-    optionOneEl.className = ("wrong-btn");
+    optionOneEl.className = ("btn wrong-btn");
     optionOneEl.textContent = ("1. commas");
     optionContainerEl.appendChild(optionOneEl);
 
     var optionTwoEl= document.createElement("button");
     optionTwoEl.setAttribute("id", "btn-option2")
-    optionTwoEl.className = ("correct-btn");
+    optionTwoEl.className = ("btn correct-btn");
     optionTwoEl.textContent = ("2. quotes");
     optionContainerEl.appendChild(optionTwoEl);
 
     var optionThreeEl= document.createElement("button");
     optionThreeEl.setAttribute("id", "btn-option3")
-    optionThreeEl.className = ("wrong-btn");
+    optionThreeEl.className = ("btn wrong-btn");
     optionThreeEl.textContent = ("3. curly brackets");
     optionContainerEl.appendChild(optionThreeEl);
 
     var optionFourEl= document.createElement("button");
     optionFourEl.setAttribute("id", "btn-option4")
-    optionFourEl.className = ("wrong-btn");
+    optionFourEl.className = ("btn wrong-btn");
     optionFourEl.textContent = ("4. parantheses");
     optionContainerEl.appendChild(optionFourEl);
 
@@ -327,25 +333,25 @@ var quizFive = function() {
     //options buttons
     var optionOneEl= document.createElement("button");
     optionOneEl.setAttribute("id", "btn-option1")
-    optionOneEl.className = ("wrong-btn");
+    optionOneEl.className = ("btn wrong-btn");
     optionOneEl.textContent = ("1. JavaScript");
     optionContainerEl.appendChild(optionOneEl);
 
     var optionTwoEl= document.createElement("button");
     optionTwoEl.setAttribute("id", "btn-option2")
-    optionTwoEl.className = ("wrong-btn");
+    optionTwoEl.className = ("btn wrong-btn");
     optionTwoEl.textContent = ("2. terminal/git bash");
     optionContainerEl.appendChild(optionTwoEl);
 
     var optionThreeEl= document.createElement("button");
     optionThreeEl.setAttribute("id", "btn-option3")
-    optionThreeEl.className = ("correct-btn");
+    optionThreeEl.className = ("btn correct-btn");
     optionThreeEl.textContent = ("3. console.log");
     optionContainerEl.appendChild(optionThreeEl);
 
     var optionFourEl= document.createElement("button");
     optionFourEl.setAttribute("id", "btn-option4")
-    optionFourEl.className = ("wrong-btn");
+    optionFourEl.className = ("btn wrong-btn");
     optionFourEl.textContent = ("4. for loops");
     optionContainerEl.appendChild(optionFourEl);
 
@@ -468,23 +474,26 @@ var highScore = function() {
     backContainerEl.appendChild(listContainerEl);
 
     for (var i=0; i < sortedScores.length; i++) {
+        var listPlayer = sortedScores[i].player;
+        var listScore = sortedScores[i].score;
+
+        var itemListEl = document.createElement("li");
+        itemListEl.setAttribute("id", "list-child");
+        listContainerEl.appendChild(itemListEl);
+        itemListEl.textContent=(listPlayer +": "+ listScore);
+
 
     }
 
-    var itemListEl = document.createElement("li");
-    itemListEl.setAttribute("id", "list-child");
-    itemListEl.textContent=("testing testing testing");
-    listContainerEl.appendChild(itemListEl);
-
     var goBackBtnEL= document.createElement("button");
     goBackBtnEL.setAttribute("id", "go-back-btn")
-    goBackBtnEL.className = ("go-back-btn");
+    goBackBtnEL.className = ("btn go-back-btn");
     goBackBtnEL.textContent = ("Go Back");
     backContainerEl.appendChild(goBackBtnEL);
 
     var clearScoreBtnEL= document.createElement("button");
     clearScoreBtnEL.setAttribute("id", "clear-score-btn")
-    clearScoreBtnEL.className = ("clear-score-btn");
+    clearScoreBtnEL.className = ("btn clear-score-btn");
     clearScoreBtnEL.textContent = ("Clear High Scores");
     backContainerEl.appendChild(clearScoreBtnEL);
 

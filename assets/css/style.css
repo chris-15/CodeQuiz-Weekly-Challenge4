@@ -5,6 +5,7 @@
 header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 0px 5px 0px 5px;    
 }
 
@@ -12,6 +13,21 @@ header {
     display: flex;
     justify-content: center;
     gap: 10px;
+}
+#main-highscore-btn {
+    font-size: 24px;
+}
+
+.btn {
+    background-color: blueviolet;
+    color: white;
+}
+#btn-start {
+    font-size: 24px;
+}
+#options {
+    display: flex;
+    justify-content: space-between;
 }
 
 /* .page-content {
