@@ -1,9 +1,12 @@
 var pageContentEl = document.querySelector("#page-content");
 pageContentEl.setAttribute("style", "margin:auto; width:50%; text-align:center;");
 
+var headerEl=document.querySelector("#header");
 var timerEl = document.querySelector("#timer");
 
 var timeLeft = 75;
+
+var allScores = [];
 
 var timeCountdown;
 
@@ -13,8 +16,6 @@ var countdown = function() {
         if (timeLeft > 0) {
             timeLeft--;
             timerEl.textContent= timeLeft;
-            
-           
         }else {
             clearInterval(timeCountdown);
             alert("You did not finish the quiz in time, your score is 0! Please try agian!")
@@ -423,33 +424,49 @@ var quizDone = function() {
     var initials = document.querySelector("#initials");
 
     formButton.addEventListener("click", function(){
-        localStorage.setItem("initials", initials.value);
-        localStorage.setItem("score", finalScore);
+        //localStorage.setItem("initials", initials.value);
+        //localStorage.setItem("score", finalScore);
         quizDoneEl.remove();
+        headerEl.style.display="none";
+        var playerScore = {
+            player: initials.value.trim(),
+            score: finalScore
+        };
+
+        allScores.push(playerScore);
+
+        localStorage.setItem("allScores", JSON.stringify(allScores));
+
+        highScore();
+
+
         //ADD FUNCTION HERE TO TAKE YOU TO HIGHSCORE PAGE FUNCTION
     })
+}
 
+    
+
+var highScore = function() {
+    var high = localStorage.getItem("allScores");
+    console.log(allScores);
+
+    var backContainerEl = document.createElement("div");
+    backContainerEl.setAttribute("id", "goback-container");
+    pageContentEl.appendChild(backContainerEl);
+
+    var goBackBtnEL= document.createElement("button");
+    goBackBtnEL.setAttribute("id", "go-back-btn")
+    goBackBtnEL.className = ("go-back-btn");
+    goBackBtnEL.textContent = ("Go Back");
+    backContainerEl.appendChild(goBackBtnEL);
+
+    backContainerEl.addEventListener("click",function(){
+        var targetEl = event.target;
+        if (targetEl.matches(".go-back-btn")) {
+            location.reload();            
+        }
+    })
 }
 
 
 startingPage();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
