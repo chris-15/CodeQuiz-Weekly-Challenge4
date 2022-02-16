@@ -463,6 +463,19 @@ var highScore = function() {
     highScoreTitleEl.textContent = ("High Scores");
     backContainerEl.appendChild(highScoreTitleEl);
 
+    var listContainerEl = document.createElement("ol");
+    listContainerEl.setAttribute("id", "list-scores");
+    backContainerEl.appendChild(listContainerEl);
+
+    for (var i=0; i < sortedScores.length; i++) {
+
+    }
+
+    var itemListEl = document.createElement("li");
+    itemListEl.setAttribute("id", "list-child");
+    itemListEl.textContent=("testing testing testing");
+    listContainerEl.appendChild(itemListEl);
+
     var goBackBtnEL= document.createElement("button");
     goBackBtnEL.setAttribute("id", "go-back-btn")
     goBackBtnEL.className = ("go-back-btn");
@@ -475,7 +488,7 @@ var highScore = function() {
     clearScoreBtnEL.textContent = ("Clear High Scores");
     backContainerEl.appendChild(clearScoreBtnEL);
 
-    
+
 
     backContainerEl.addEventListener("click", function() {
         var targetEl = event.target ;
