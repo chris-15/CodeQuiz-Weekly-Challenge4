@@ -6,7 +6,10 @@ var timerEl = document.querySelector("#timer");
 
 var timeLeft = 75;
 
-var allScores = [];
+//checks to see if theres anything in local storage then adds them to array, if not retun an empty array
+var allScores = localStorage.getItem("allScores")?JSON.parse(localStorage.getItem("allScores")):[]
+
+
 
 var timeCountdown;
 
@@ -356,8 +359,6 @@ var quizFive = function() {
             alert("Correct Answer!");
             quizDone();
             
-            
-            // CALL FUNCTION HERE TO DISPLAY FINAL SCORE
         } else if (targetEl.matches(".wrong-btn")) {
             console.log("wrong answer!");
             quizContainerEl.remove();
@@ -447,12 +448,20 @@ var quizDone = function() {
     
 
 var highScore = function() {
-    var high = localStorage.getItem("allScores");
-    console.log(allScores);
+    //var high = JSON.parse(localStorage.getItem("allScores"));
+
+    var sortedScores= allScores.sort(function(firstItem, secondItem){return firstItem.score-secondItem.score} )
+    sortedScores.reverse();
+    console.log(sortedScores);
 
     var backContainerEl = document.createElement("div");
     backContainerEl.setAttribute("id", "goback-container");
     pageContentEl.appendChild(backContainerEl);
+
+    var highScoreTitleEl = document.createElement("h1");
+    highScoreTitleEl.setAttribute("id", "high-score-title");
+    highScoreTitleEl.textContent = ("High Scores");
+    backContainerEl.appendChild(highScoreTitleEl);
 
     var goBackBtnEL= document.createElement("button");
     goBackBtnEL.setAttribute("id", "go-back-btn")
@@ -460,10 +469,19 @@ var highScore = function() {
     goBackBtnEL.textContent = ("Go Back");
     backContainerEl.appendChild(goBackBtnEL);
 
-    backContainerEl.addEventListener("click",function(){
-        var targetEl = event.target;
+    var clearScoreBtnEL= document.createElement("button");
+    clearScoreBtnEL.setAttribute("id", "clear-score-btn")
+    clearScoreBtnEL.className = ("clear-score-btn");
+    clearScoreBtnEL.textContent = ("Clear High Scores");
+    backContainerEl.appendChild(clearScoreBtnEL);
+
+    backContainerEl.addEventListener("click", function() {
+        var targetEl = event.target ;
         if (targetEl.matches(".go-back-btn")) {
             location.reload();            
+        } else if (targetEl.matches("clear-score-btn")) {
+            localStorage.clear();
+            location.reload();
         }
     })
 }
