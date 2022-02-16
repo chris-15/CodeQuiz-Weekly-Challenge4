@@ -475,11 +475,13 @@ var highScore = function() {
     clearScoreBtnEL.textContent = ("Clear High Scores");
     backContainerEl.appendChild(clearScoreBtnEL);
 
+    
+
     backContainerEl.addEventListener("click", function() {
         var targetEl = event.target ;
         if (targetEl.matches(".go-back-btn")) {
             location.reload();            
-        } else if (targetEl.matches("clear-score-btn")) {
+        } else if (targetEl.matches(".clear-score-btn")) {
             localStorage.clear();
             location.reload();
         }
