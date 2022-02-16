@@ -13,7 +13,7 @@ var allScores = localStorage.getItem("allScores")?JSON.parse(localStorage.getIte
 
 var timeCountdown;
 
-
+//function to countdown time
 var countdown = function() {
     timeCountdown = setInterval(function() {
         if (timeLeft > 0) {
@@ -114,7 +114,7 @@ var quizOne = function() {
     optionContainerEl.appendChild(optionFourEl);
 
    
-
+    // event listener for answer- either correct or wrong- then moves to next question function
     optionContainerEl.addEventListener("click", function(event) {
         var targetEl = event.target;
         if (targetEl.matches(".correct-btn")) {
@@ -174,7 +174,8 @@ var quizTwo = function() {
     optionFourEl.className = ("btn correct-btn");
     optionFourEl.textContent = ("4. parantheses");
     optionContainerEl.appendChild(optionFourEl);
-
+    
+    // event listener for answer- either correct or wrong- then moves to next question function
     optionContainerEl.addEventListener("click", function(event) {
         var targetEl = event.target;
         if (targetEl.matches(".correct-btn")) {
@@ -235,6 +236,7 @@ var quizThree = function() {
     optionFourEl.textContent = ("4. all of the above");
     optionContainerEl.appendChild(optionFourEl);
 
+    // event listener for answer- either correct or wrong- then moves to next question function
     optionContainerEl.addEventListener("click", function(event) {
         var targetEl = event.target;
         if (targetEl.matches(".correct-btn")) {
@@ -295,6 +297,7 @@ var quizFour = function() {
     optionFourEl.textContent = ("4. parantheses");
     optionContainerEl.appendChild(optionFourEl);
 
+    // event listener for answer- either correct or wrong- then moves to next question function
     optionContainerEl.addEventListener("click", function(event) {
         var targetEl = event.target;
         if (targetEl.matches(".correct-btn")) {
@@ -355,6 +358,7 @@ var quizFive = function() {
     optionFourEl.textContent = ("4. for loops");
     optionContainerEl.appendChild(optionFourEl);
 
+    // event listener for answer- then moves on to quiz done function to enter score
     optionContainerEl.addEventListener("click", function(event) {
         var targetEl = event.target;
         if (targetEl.matches(".correct-btn")) {
@@ -430,9 +434,8 @@ var quizDone = function() {
     
     var initials = document.querySelector("#initials");
 
+    // event listener that stores scores and initials when button clicked 
     formButton.addEventListener("click", function(){
-        //localStorage.setItem("initials", initials.value);
-        //localStorage.setItem("score", finalScore);
         quizDoneEl.remove();
         headerEl.style.display="none";
         var playerScore = {
@@ -448,8 +451,6 @@ var quizDone = function() {
 
     })
 }
-
-    
 
 var highScore = function() {
     
@@ -494,8 +495,7 @@ var highScore = function() {
     clearScoreBtnEL.textContent = ("Clear High Scores");
     backContainerEl.appendChild(clearScoreBtnEL);
 
-
-
+    //event listener to either go back to starting/ or clear scores
     backContainerEl.addEventListener("click", function() {
         var targetEl = event.target ;
         if (targetEl.matches(".go-back-btn")) {
