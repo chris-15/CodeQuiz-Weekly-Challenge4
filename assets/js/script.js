@@ -11,7 +11,6 @@ var timeLeft = 75;
 var allScores = localStorage.getItem("allScores")?JSON.parse(localStorage.getItem("allScores")):[]
 
 
-
 var timeCountdown;
 
 
@@ -63,6 +62,7 @@ var startingPage = function() {
     //event listener for when button is clicked to start quiz
     buttonStartEl.addEventListener("click", startQuizButton);
 
+    // event listener 
     headerHighScoreBtn.addEventListener("click",function(){
         quizInstructionsEl.remove();
         highScore();
@@ -77,7 +77,7 @@ var quizOne = function() {
     quizContainerEl.setAttribute("id", "questions");
     pageContentEl.appendChild(quizContainerEl);
 
-    //question 1
+    //question one
     var questionOneEl = document.createElement("h1");
     questionOneEl.setAttribute("id", "question-one");
     questionOneEl.textContent = ("Commonly used data types DO NOT include:");
@@ -139,7 +139,7 @@ var quizTwo = function() {
     quizContainerEl.setAttribute("id", "questions");
     pageContentEl.appendChild(quizContainerEl);
 
-    //question 1
+    //question two
     var questionTwoEl = document.createElement("h1");
     questionTwoEl.setAttribute("id", "question-two");
     questionTwoEl.textContent = ("The condition in an if/else statement is enclosed with __________.");
@@ -446,16 +446,13 @@ var quizDone = function() {
 
         highScore();
 
-
-        //ADD FUNCTION HERE TO TAKE YOU TO HIGHSCORE PAGE FUNCTION
     })
 }
 
     
 
 var highScore = function() {
-    //var high = JSON.parse(localStorage.getItem("allScores"));
-
+    
     var sortedScores= allScores.sort(function(firstItem, secondItem){return firstItem.score-secondItem.score} )
     sortedScores.reverse();
     console.log(sortedScores);
